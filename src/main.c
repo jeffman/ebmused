@@ -46,7 +46,7 @@ static const WNDPROC tab_wndproc[NUM_TABS] = {
 
 static char filename[MAX_PATH];
 static OPENFILENAME ofn;
-static char *open_dialog(BOOL WINAPI (*func)(LPOPENFILENAME),
+static char *open_dialog(BOOL (WINAPI *func)(LPOPENFILENAME),
 	char *filter, DWORD flags)
 {
 	*filename = '\0';
@@ -373,8 +373,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	HACCEL hAccel = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDA_ACCEL));
 
-	if (_argc > 1)
-		open_rom(_argv[1], FALSE);
+	if (__argc > 1)
+		open_rom(__argv[1], FALSE);
 	tab_selected(0);
 
 	while (GetMessage(&msg, NULL, 0, 0) > 0) {
